@@ -1,9 +1,20 @@
-
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react'
 import Cartitem from '../layout/Cartitem'
 import Footer from '../layout/Footer'
 
 
-function Cart() {   
+function Cart() { 
+    const[summaryTotal,setSummaryTotal]=useState(0)
+    console.log(summaryTotal);
+    const cartData = useSelector((state) => {
+        return state.cartlist;
+      }); 
+    // useEffect(()=>{
+    //     cartData.products.map(e=>{
+    //         setSummaryTotal((prevsummaryTotal)=>prevsummaryTotal+e.total)
+    //     })
+    // },[cartData])
 
   return (
     <>
@@ -22,8 +33,7 @@ function Cart() {
                         </tr>
                     </thead>
                     <tbody className="align-middle">
-                        <Cartitem/>
-                        
+                        <Cartitem/>                        
                     </tbody>
                 </table>
             </div>
