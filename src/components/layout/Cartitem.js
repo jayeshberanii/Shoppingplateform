@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector,useDispatch } from "react-redux";
 import { decreaseAmountAction, increaseAmountAction, removefromcartAction } from "../../Redux/Actions/cartAction";
+import { decreasecartitemamount, increasecartitemamount, removefromcart } from "../../Redux/Slices/cartSlice";
 
 function Cartitem() {
   const [cartList, setCartList] = useState([]);  
@@ -13,16 +14,16 @@ function Cartitem() {
   });  
 
   useEffect(() => {    
-    const { products } = cartData;
-    setCartList(products);
+    const { cartlist } = cartData;
+    setCartList(cartlist);
   }, [cartData]);
 
-const increaseAmount=(pos)=>{
-  dispatch(increaseAmountAction(pos))
-}
-const decreaseAmount=(id)=>{
-  dispatch(decreaseAmountAction(id))
-}
+// const increaseAmount=(pos)=>{
+//   dispatch(increaseAmountAction(pos))
+// }
+// const decreaseAmount=(id)=>{
+//   dispatch(decreaseAmountAction(id))
+// }
 
   return (
     <>
@@ -42,7 +43,7 @@ const decreaseAmount=(id)=>{
                 <td className="align-middle col-2">
                   <div className="input-group quantity mx-auto">
                     <div className="input-group-btn">
-                      <button className="btn btn-sm btn-primary btn-minus" onClick={item.amount>0?()=>decreaseAmount(item.id):''}>
+                      <button className="btn btn-sm btn-primary btn-minus" onClick={item.amount>0?()=>dispatch(decreasecartitemamount(item.id)):''}>
                         <i className="fa fa-minus"></i>
                       </button>
                     </div>
@@ -53,7 +54,7 @@ const decreaseAmount=(id)=>{
                       readOnly
                     />
                     <div className="input-group-btn">
-                      <button className="btn btn-sm btn-primary btn-plus" onClick={()=>increaseAmount(item.id)}>
+                      <button className="btn btn-sm btn-primary btn-plus" onClick={()=>dispatch(increasecartitemamount(item.id))}>
                         <i className="fa fa-plus"></i>
                       </button>
                     </div>
@@ -61,7 +62,7 @@ const decreaseAmount=(id)=>{
                 </td>
                 <td className="align-middle">{Number(item.total).toFixed(2)}</td>
                 <td className="align-middle">
-                  <button className="btn btn-sm btn-danger" onClick={()=>dispatch(removefromcartAction(item.id))}>
+                  <button className="btn btn-sm btn-danger" onClick={()=>dispatch(removefromcart(item.id))}>
                     <i className="fa fa-times"></i>
                   </button>
                 </td>

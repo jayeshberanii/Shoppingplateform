@@ -4,18 +4,17 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { productReducer } from "./Reducer/ProductReducer";
 import { cartReducer } from "./Reducer/cartReducer";
 import { configureStore } from "@reduxjs/toolkit";
+import productSlice from "./Slices/productSlice";
+import cartSlice from "./Slices/cartSlice";
 
-const rootReducer=combineReducers({
-    productlist:productReducer,
-    cartlist:cartReducer
-})
 
 const middleWare=[thunk]
 
 const store=configureStore({
     reducer:{
-        productlist:productReducer,
-        cartlist:cartReducer
+        productlist:productSlice,
+        cartlist:cartSlice,
+        
     }
 },{},composeWithDevTools(applyMiddleware(...middleWare)))
 

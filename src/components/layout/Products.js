@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import cartAction from "../../Redux/Actions/cartAction";
+// import cartAction from "../../Redux/Actions/cartAction";
+import { cartactiondata } from "../../Redux/Actions/productdataAction";
+
 
 function Products(props) {
   const [productLIST, setproductLIST] = useState([])
@@ -28,7 +30,7 @@ function Products(props) {
                         alt=""
                       />
                       <div className="product-action" >
-                        <button className="btn btn-outline-dark btn-square" onClick={()=>dispatch(cartAction(item.id))}>
+                        <button className="btn btn-outline-dark btn-square" onClick={()=>dispatch(cartactiondata(item.id))}>
                           <i className="fa fa-shopping-cart"></i>
                         </button>
                         {/* <a className="btn btn-outline-dark btn-square" href="#home">
